@@ -1,0 +1,48 @@
+{
+  "name": "next-auth-provider-cloudburst-lab",
+  "version": "1.0.0",
+  "description": "This npm library enables OAuth 2.0 (OIDC) provider functionality, allowing users to log in via a CloudBurst Lab account in your Next.js application registered on the sh-authentication-system official website. Simply install, import, and start using it.",
+  "source": "src/index.ts",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc"
+  },
+  "files": [
+    "dist"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shawkath646/NPM-next-auth-provider-cloudburst-lab.git"
+  },
+  "keywords": [
+    "nextjs 14",
+    "next auth",
+    "auth js",
+    "provider",
+    "oauth",
+    "oauth 2.0",
+    "openid client",
+    "oidc",
+    "google provider",
+    "facebook provider",
+    "github provider",
+    "cloudburst lab",
+    "sh authentication system",
+    "shas",
+    "next auth v5"
+  ],
+  "author": "Shawkat Hossain Maruf",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/shawkath646/NPM-next-auth-provider-cloudburst-lab/issues"
+  },
+  "homepage": "https://github.com/shawkath646/NPM-next-auth-provider-cloudburst-lab#readme",
+  "devDependencies": {
+    "next": ">=13",
+    "next-auth": ">=5.0.0-beta.15",
+    "@types/node": ">=20.11.25",
+    "@types/react": "^18.2.64"
+  }
+}
