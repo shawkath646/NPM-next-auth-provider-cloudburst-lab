@@ -20,7 +20,8 @@ export interface CloudBurstLabProfile extends Record<string, any> {
   gender?: string
   dateOfBirth?: Date
   country?: string
-  phoneNumber?: any
+  phoneNumber?: string
+  phoneNumberVerified?: boolean
   isEnterpriseUser?: boolean
 }
 
