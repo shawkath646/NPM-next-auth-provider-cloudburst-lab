@@ -17,7 +17,7 @@ export interface CloudBurstLabProfile extends Record<string, any> {
   nbf?: number
   picture: string
   sub: string
-  gender?: "male" | "femlae" | "others"
+  gender?: string
   dateOfBirth?: Date
   country?: string
   phoneNumber?: any
