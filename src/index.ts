@@ -1,11 +1,40 @@
-"use server";
-import { Profile } from "next-auth";
-import type { OIDCConfig } from "@auth/core/providers";
+import type { OAuthUserConfig, OIDCConfig } from "@auth/core/providers";
 
-const CloudBurstLab = (params: Partial<OIDCConfig<Profile>> = {}): OIDCConfig<Profile> => {
+export interface CloudBurstLabProfile extends Record<string, any> {
+  aud: string
+  azp: string
+  email: string
+  email_verified: boolean
+  exp: number
+  family_name?: string
+  given_name: string
+  hd?: string
+  iat: number
+  iss: string
+  jti?: string
+  locale?: string
+  name: string
+  nbf?: number
+  picture: string
+  sub: string
+  gender?: "male" | "femlae" | "others"
+  dateOfBirth?: Date
+  country?: string
+  phoneNumber?: any
+  isEnterpriseUser?: boolean
+}
 
-  if (!params.clientId) params.clientId = process.env.SHAS_APP_ID;
-  if (!params.clientSecret) params.clientSecret = process.env.SHAS_APP_SECRET;
+interface CloudBurstLabConfig<P extends CloudBurstLabProfile> extends OIDCConfig<P> {
+  options: OAuthUserConfig<P>;
+}
+
+
+export default function CloudBurstLab<P extends CloudBurstLabProfile>(
+  options: OAuthUserConfig<P>
+): CloudBurstLabConfig<P> {
+
+  if (!options.clientId) options.clientId = process.env.SHAS_APP_ID;
+  if (!options.clientSecret) options.clientSecret = process.env.SHAS_APP_SECRET;
 
   return {
     id: "cloudburst-lab",
@@ -17,8 +46,6 @@ const CloudBurstLab = (params: Partial<OIDCConfig<Profile>> = {}): OIDCConfig<Pr
       logo: "./cloudburst_lab.png",
       text: "#000",
     },
-    ...params
+    options
   };
 };
-
-export default CloudBurstLab;
