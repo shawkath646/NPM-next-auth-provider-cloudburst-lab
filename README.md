@@ -1,90 +1,100 @@
+<!-- HEADER SECTION -->
+<div align="center">
 
-# CloudBurst Lab Provider
+# NextAuth Provider — CloudBurst Lab
 
-This npm library enables OAuth 2.0 (OIDC) provider functionality, allowing users to log in via a CloudBurst Lab account in your Next.js application registered on the sh-authentication-system official website. Simply install, import, and start using it.
+**[DEPRECATED] NextAuth.js OAuth 2.0 (OIDC) provider for legacy CloudBurst Lab accounts.**
 
-## Installation
+<!-- BADGES -->
+[![Status](https://img.shields.io/badge/Status-Deprecated-inactive?style=flat-square)](#)
+[![Author](https://img.shields.io/badge/Author-Shawkat%20Hossain%20Maruf-black?style=flat-square)](https://shawkath646.dev)
+[![Ecosystem](https://img.shields.io/badge/Ecosystem-clouburstlab-2563EB?style=flat-square)](https://clouburstlab.com)
+[![Modern Successor](https://img.shields.io/badge/Modern%20Successor-clouauth-2563EB?style=flat-square)](https://github.com/shawkath646/clouauth)
+[![License](https://img.shields.io/badge/License-MIT-green?style=flat-square)](#-license)
 
+</div>
+
+---
+
+### 📋 Project Overview
+
+| Property | Details |
+| :--- | :--- |
+| **Author** | [Shawkat Hossain Maruf](https://shawkath646.dev) |
+| **Platform** | NPM Package / NextAuth.js / Auth.js Extension |
+| **Period / Timeline** | Mar 2024 |
+| **Status** | Deprecated / Archived |
+| **Modern Successor** | **[`clouauth`](https://github.com/shawkath646/clouauth)** |
+| **Primary Stack** | TypeScript, NextAuth.js, OAuth 2.0, OpenID Connect |
+
+---
+
+> [!WARNING]
+> **Deprecation Notice & Migration to `clouauth`**  
+> This package is **deprecated and archived**. It provided an OpenID Connect (OIDC) provider for the legacy SH Authentication System. For all current and future OAuth 2.0 application management across `clouburstlab`, please migrate to **[`clouauth`](https://github.com/shawkath646/clouauth)**.
+
+---
+
+## 🎯 Purpose & History
+
+### Why It Existed
+To allow third-party client web applications built with Next.js to authenticate users via CloudBurst Lab accounts using the industry-standard NextAuth.js (Auth.js) library.
+
+### What It Provided
+- **Standardized NextAuth Provider:** Implemented the `OAuthConfig` interface allowing simple plug-and-play inclusion in `auth.config.ts`.
+- **OpenID Connect (OIDC) Flow:** Handled authorization code exchange, access token retrieval, and user profile deserialization.
+
+---
+
+## 📦 Historical Usage (Legacy Reference)
+
+```bash
+npm install next-auth-provider-cloudburst-lab
 ```
 
-npm i next-auth-provider-cloudburst-lab
+### Integration (`auth.config.ts`)
 
-```
-
-## Usage
-
-### 1. Register application to SH Authentication System [application page](https://sh-authentication-system.vercel.app/auth/profile/applications).
-
-Copy the **app id** and **app secret** that is provided into application details page.
-
-### 2. Import CloudBurst Lab provider
-
-Import CloudBurst Lab provider to next auth **auth.config.ts** file in the root directory:
-
-```
-
+```typescript
 import CloudBurstLab from "next-auth-provider-cloudburst-lab";
-// ... other imports
+import type { NextAuthConfig } from "next-auth";
 
-export const authConfig  = {
+export const authConfig = {
   providers: [
-    CloudBurstLab
-    // ... rest of providers
-  ],
-  // ...rest of your configuration
+    CloudBurstLab({
+      clientId: process.env.CLOUDBURST_CLIENT_ID!,
+      clientSecret: process.env.CLOUDBURST_CLIENT_SECRET!
+    })
+  ]
 } satisfies NextAuthConfig;
-
-```
-If you want to modify provider configuration like others provider, you can do it.
 ```
 
-CloudBurstLab({
-	// ... provider configuration
-});
+---
 
-```
-**Note: If you have saved environment variables in this format you don't need to manually pass it.**
-```
+## 🔄 Migration Guide
 
-SHAS_APP_ID=
-SHAS_APP_SECRET=
+To authenticate applications today:
+1. Refer to **[`clouauth`](https://github.com/shawkath646/clouauth)**.
+2. Use modern OpenID Connect (OCID) client endpoints provided by `clouauth`.
 
-```
-OR, Next auth default:
-```
+---
 
-AUTH_CLOUDBURSTLAB_ID=
-AUTH_CLOUDBURSTLAB_SECRET=
+## 📄 License
 
-```
+Distributed under the [MIT License](LICENSE). See `LICENSE` for more information.
 
-## Features
+---
 
-* Hassle free login system
-
-* 3 popular providers to login your **CloudBurst Lab** account.
-
-* If you want to remotely active, inactive, show toast message in your nextjs application, use [shas-app-controller](https://www.npmjs.com/package/shas-app-controller)
-
-## Requirements
-
-* Minimum version of Next Auth v5 @beta 15 for new configuration.
-
-## Author
-
-**[Shawkat Hossain Maruf](https://sh-portfolio-maker.vercel.app/p/shawkath646)**
-
-<br  />
-
-Contact: shawkath646@gmail.com
-
-## Version
-
-Current version: 1.0.0
-
-##### Please use latest version to prevent bugs and errors!
-
-<img  src="https://storage.googleapis.com/sh-cloudburst-labs.appspot.com/cloudburst_lab_logo_transparent.png?GoogleAccessId=firebase-adminsdk-lf84z%40sh-cloudburst-labs.iam.gserviceaccount.com&Expires=4863727974&Signature=B1G9adLuRnjVIxGHoh3dyMVtGsR00KdmatEJRzKpMHPDjgsUX%2Bi9VftAz71puzbFmFsC5xP%2FHZFcBKQ7NBfJbkQzhiuywJMBmOSJlsn7mNfLgZlEsU5ReaNaMXDF6y3W65YeR76u2XBiQjAvVNl%2FEIvMvgbanNJWoDULrxF1OgeF1q8O270oT05ZfzIytLpi7c%2BbBIv6OtmzeUHNa0KJaTX0QPcdesQKFL0pQpaQPncdk6iQtOCOUafgKfQregHwn9iOo1iW1SM4sLw92uJURvLWimyq8JUWjc8J8AXyActsuwQs9IRQz5%2BUjc4k5zVwIS4fQDODvN8t97FDR2Sg7g%3D%3D"  alt="CloudBurst Logo"  height="150"  width="150">
-
-  
-*A product of [CloudBurst Lab](https://cloudburstlab.vercel.app)*
+<!-- BRANDING FOOTER -->
+<div align="center">
+  <sub>Engineered by</sub><br/>
+  <strong><a href="https://shawkath646.dev">Shawkat Hossain Maruf</a></strong>
+  <br/><br/>
+  <sub>A product of</sub><br/>
+  <a href="https://clouburstlab.com" target="_blank" rel="noopener noreferrer">
+    <picture>
+      <source media="(prefers-color-scheme: dark)" srcset="https://assets.clouburstlab.com/branding/icon_dark.png">
+      <source media="(prefers-color-scheme: light)" srcset="https://assets.clouburstlab.com/branding/icon_light.png">
+      <img alt="clouburstlab" src="https://assets.clouburstlab.com/branding/icon_light.png" width="230">
+    </picture>
+  </a>
+</div>
